@@ -119,7 +119,7 @@ export default function App() {
       var: dependentVariable.current,
       taps: tapLogsArray.current.map((tap) => JSON.parse(tap))
     });
-    
+
     const payload = {
         id: uniqueIdentifier.current,
         var: dependentVariable.current,
@@ -314,6 +314,7 @@ export default function App() {
   return (
     <div>
       {/* <div id="buttoncontainer"> */}
+      <p>Click Logger - Nethum</p>
       {showButtonContainer && (
         <div id="buttoncontainer">
           <button
