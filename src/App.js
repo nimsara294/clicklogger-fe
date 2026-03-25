@@ -114,15 +114,26 @@ export default function App() {
     // Replaced with console.log for now. Backend will be wired up in the next step.
     // ─────────────────────────────────────────────────────────────────────
 
-    console.log(
-      "id=" +
-        uniqueIdentifier.current +
-        "&var=" +
-        dependentVariable.current +
-        "&taps=[" +
-        tapLogsArray.current +
-        "]",
-    );
+    console.log("Syncing to server with payload:", {
+      id: uniqueIdentifier.current,
+      var: dependentVariable.current,
+      taps: tapLogsArray.current.map((tap) => JSON.parse(tap))
+    });
+    
+    const payload = {
+        id: uniqueIdentifier.current,
+        var: dependentVariable.current,
+        taps: tapLogsArray.current.map((tap) => JSON.parse(tap))
+    };
+
+    fetch('http://localhost:8080/saveTaps', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => console.log('Server response:', data))
+    .catch(err => console.error('Error sending taps:', err));
 
     // Original XHR block kept as reference:
     //
@@ -242,7 +253,7 @@ export default function App() {
               setShowContinue(true); // document.getElementById("continue").style.display="block";
               setShowTapHere(false); // document.getElementById("tapHere").style.display="none";
               //console.log(tapLogsArray.toString());
-              //syncToServer();
+              syncToServer();
             } else {
               setCounterHTML(
                 '<span class="spanWhite">Mean tap duration: <span class="spanTime">' +
