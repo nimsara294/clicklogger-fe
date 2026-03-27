@@ -126,7 +126,7 @@ export default function App() {
         taps: tapLogsArray.current.map((tap) => JSON.parse(tap))
     };
 
-    fetch('http://localhost:8080/saveTaps', {
+    fetch('https://clicklogger-be.onrender.com/saveTaps', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
