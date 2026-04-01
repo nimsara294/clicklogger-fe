@@ -46,7 +46,7 @@ button{
 }
 
 #continue{
-	display: none;
+	display: block;
 }
 #next{
 	float:right;
@@ -129,7 +129,10 @@ span{
 	/*background-color:ivory;*/
 	height:250px;/*overflow-y:scroll;*/margin:0px;padding:0px;
 }
-
+#continueVariation {
+    display: block;
+    margin-top: 20px;
+}
 @media screen and (min-width:768px){
 
 	div{
